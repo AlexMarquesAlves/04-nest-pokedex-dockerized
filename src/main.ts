@@ -7,6 +7,7 @@ async function bootstrap() {
   const PORT = process.env.PORT
 
   app.enableCors()
+  app.setGlobalPrefix('api/v2')
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
