@@ -61,8 +61,13 @@ export class PokemonService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async update(id: number, updatePokemonDto: UpdatePokemonDto) {
-    return `This action updates a #${id} pokemon`
+  async update(term: string, updatePokemonDto: UpdatePokemonDto) {
+    const pokemon = await this.findOne(term)
+    if (updatePokemonDto.name)
+      updatePokemonDto.name = updatePokemonDto.name.toLowerCase()
+
+    try {
+    } catch (error) {}
   }
 
   async remove(id: number) {
