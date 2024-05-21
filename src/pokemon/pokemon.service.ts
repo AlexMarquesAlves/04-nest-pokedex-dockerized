@@ -40,12 +40,12 @@ export class PokemonService {
       pokemon = await this.pokemonModel.findOne({ no: term })
     }
 
-    // TODO MongoID
+    // MongoID
     if (!pokemon && isValidObjectId(term)) {
       pokemon = await this.pokemonModel.findById(term)
     }
 
-    //TODO Name
+    // Name
     if (!pokemon) {
       pokemon = await this.pokemonModel.findOne({
         name: term.toLowerCase().trim(),
