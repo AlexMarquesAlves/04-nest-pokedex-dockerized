@@ -67,7 +67,11 @@ export class PokemonService {
       updatePokemonDto.name = updatePokemonDto.name.toLowerCase()
 
     try {
-    } catch (error) {}
+      await pokemon.updateOne(updatePokemonDto)
+      return { ...pokemon.toJSON(), ...updatePokemonDto }
+    } catch (error) {
+      this.handleExceptions(error)
+    }
   }
 
   async remove(id: number) {
