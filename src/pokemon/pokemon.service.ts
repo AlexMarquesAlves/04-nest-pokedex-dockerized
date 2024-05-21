@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
@@ -32,8 +33,23 @@ export class PokemonService {
     return `This action returns all pokemon`
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} pokemon`
+  async findOne(term: string) {
+    let pokemon: Pokemon
+
+    if (!isNaN(+term)) {
+      pokemon = await this.pokemonModel.findOne({ no: term })
+    }
+
+    // TODO MongoID
+
+    //TODO Name
+
+    if (!pokemon)
+      throw new NotFoundException(
+        `Pokemon with id, name or no "${term}" not found`,
+      )
+
+    return pokemon
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
