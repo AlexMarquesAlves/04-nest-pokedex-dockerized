@@ -36,6 +36,7 @@ export class PokemonService {
     return `This action returns a #${id} pokemon`
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async update(id: number, updatePokemonDto: UpdatePokemonDto) {
     return `This action updates a #${id} pokemon`
   }
