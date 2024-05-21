@@ -24,6 +24,7 @@ export class PokemonController {
   }
 
   @Get()
+  @HttpCode(HttpStatus.OK)
   findAll() {
     return this.pokemonService.findAll()
   }
