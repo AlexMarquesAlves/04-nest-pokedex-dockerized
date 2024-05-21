@@ -60,7 +60,6 @@ export class PokemonService {
     return pokemon
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async update(term: string, updatePokemonDto: UpdatePokemonDto) {
     const pokemon = await this.findOne(term)
     if (updatePokemonDto.name)
@@ -74,8 +73,10 @@ export class PokemonService {
     }
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} pokemon`
+  async remove(id: string) {
+    const pokemon = await this.findOne(id)
+    await pokemon.deleteOne()
+    return { id }
   }
 
   private handleExceptions(error: any) {
