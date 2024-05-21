@@ -43,6 +43,11 @@ export class PokemonService {
     // TODO MongoID
 
     //TODO Name
+    if (!pokemon) {
+      pokemon = await this.pokemonModel.findOne({
+        name: term.toLowerCase().trim(),
+      })
+    }
 
     if (!pokemon)
       throw new NotFoundException(
