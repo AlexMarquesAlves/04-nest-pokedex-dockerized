@@ -15,6 +15,6 @@ import { PokemonService } from './pokemon.service'
   ],
   controllers: [PokemonController],
   providers: [PokemonService],
-  exports: [PokemonService],
+  exports: [PokemonService, MongooseModule],
 })
 export class PokemonModule {}
