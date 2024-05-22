@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
+import { PokeResponse } from './interfaces/poke-response.interface'
 
 @Injectable()
 export class SeedService {
@@ -7,8 +8,15 @@ export class SeedService {
   private readonly axios: AxiosInstance = axios
 
   async executeSeed() {
-    const { data } = await this.axios.get(this.POKEAPI_URL)
+    const { data } = await this.axios.get<PokeResponse>(this.POKEAPI_URL)
 
-    return { data }
+    data.results.forEach(({ name, url }) => {
+      const segments = url.split('/')
+      const no = +segments[segments.length - 2]
+
+      console.log({ name, no })
+    })
+
+    return data
   }
 }
