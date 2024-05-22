@@ -12,7 +12,7 @@ export class SeedService {
     private readonly pokemonModel: Model<Pokemon>,
   ) {}
 
-  POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon?limit=10'
+  POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon?limit=151'
   private readonly axios: AxiosInstance = axios
 
   async executeSeed() {
@@ -22,7 +22,7 @@ export class SeedService {
       const segments = url.split('/')
       const no = +segments[segments.length - 2]
 
-      const _pokemon = await this.pokemonModel.create({ no, name })
+      await this.pokemonModel.create({ no, name })
     })
 
     return `The seed was executed successfully`
