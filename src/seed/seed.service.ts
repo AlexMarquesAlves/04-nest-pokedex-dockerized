@@ -16,14 +16,22 @@ export class SeedService {
   private readonly axios: AxiosInstance = axios
 
   async executeSeed() {
-    const { data } = await this.axios.get<PokeResponse>(this.POKEAPI_URL)
+    // Cleaning database
+    await this.pokemonModel.deleteMany({}) // delete * from pokemons
 
-    data.results.forEach(async ({ name, url }) => {
+    // Populate database
+    const { data } = await this.axios.get<PokeResponse>(this.POKEAPI_URL)
+    const insertPromisesArray = []
+
+    data.results.forEach(({ name, url }) => {
       const segments = url.split('/')
       const no = +segments[segments.length - 2]
 
-      await this.pokemonModel.create({ no, name })
+      // await this.pokemonModel.create({ no, name })
+
+      insertPromisesArray.push(this.pokemonModel.create({ no, name }))
     })
+    await Promise.all(insertPromisesArray)
 
     return `The seed was executed successfully`
   }
