@@ -12,7 +12,7 @@ export class SeedService {
     private readonly pokemonModel: Model<Pokemon>,
   ) {}
 
-  POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon?limit=151'
+  POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon?limit=650'
   private readonly axios: AxiosInstance = axios
 
   async executeSeed() {
@@ -21,7 +21,7 @@ export class SeedService {
 
     // Populate database
     const { data } = await this.axios.get<PokeResponse>(this.POKEAPI_URL)
-    const insertPromisesArray = []
+    const pokemonToInsert: { no: number; name: string }[] = []
 
     data.results.forEach(({ name, url }) => {
       const segments = url.split('/')
@@ -29,9 +29,9 @@ export class SeedService {
 
       // await this.pokemonModel.create({ no, name })
 
-      insertPromisesArray.push(this.pokemonModel.create({ no, name }))
+      pokemonToInsert.push({ no, name })
     })
-    await Promise.all(insertPromisesArray)
+    await this.pokemonModel.insertMany(pokemonToInsert)
 
     return `The seed was executed successfully`
   }
