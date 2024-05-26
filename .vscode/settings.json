@@ -1,5 +1,6 @@
 {
   "material-icon-theme.activeIconPack": "nest",
+  "workbench.colorTheme": "Tokyo Night",
   "cSpell.language": "en,pt,pt-BR,es,pt-PT",
   "cSpell.words": [
     "charmander",
@@ -10,6 +11,8 @@
     "inyectar",
     "pokeapi",
     "pokedex",
+    "pokemon",
+    "pokemons",
     "Reponse"
   ]
 }
