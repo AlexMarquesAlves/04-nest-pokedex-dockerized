@@ -1,24 +1,23 @@
-import { ValidationPipe } from '@nestjs/common'
-import { NestFactory } from '@nestjs/core'
-import { AppModule } from './app.module'
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
-  const PORT = process.env.PORT
+  const app = await NestFactory.create(AppModule);
 
-  app.enableCors()
-  app.setGlobalPrefix('api/v2')
+  app.setGlobalPrefix('api/v2');
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
-    }),
-  )
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      }
+    })
+  );
 
-  await app.listen(PORT, () => {
-    console.log(
-      `🚀 Running API server in MODE:${process.env.NODE_ENV} on Port:${PORT}`,
-    )
-  })
+  await app.listen(3000);
 }
-bootstrap()
+bootstrap();
