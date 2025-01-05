@@ -1,5 +1,11 @@
 {
-  "material-icon-theme.activeIconPack": "nest",
+  "symbols.files.associations": {
+    "*.e2e-spec.ts": "jest",
+    "*.spec.ts": "jest",
+    "*.module.ts": "nest",
+    "*.service.ts": "nest",
+    "*.controller.ts": "nest"
+  },
   "editor.defaultFormatter": "biomejs.biome",
   "workbench.colorTheme": "Tokyo Night",
   "cSpell.language": "en,pt,pt-BR,es,pt-PT",
