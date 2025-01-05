@@ -7,7 +7,7 @@
 1. Clonar el repositorio
 2. Ejecutar
 ```
-yarn install
+npm install | yarn install | pnpm install
 ```
 3. Tener Nest CLI instalado
 ```
@@ -17,6 +17,11 @@ npm i -g @nestjs/cli
 4. Levantar la base de datos
 ```
 docker-compose up -d
+```
+
+5. Arrancar la API
+```
+npm run start:dev | yarn run start:dev | pnpm run start:dev
 ```
 
 5. Reconstruir la base de datos con la semilla
