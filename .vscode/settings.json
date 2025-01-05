@@ -12,10 +12,13 @@
     "Fernado",
     "Instantiator",
     "inyectar",
+    "MONGODB",
     "pokeapi",
     "pokedex",
+    "pokedexapp",
     "pokemon",
     "pokemons",
+    "pokemonsdb",
     "Reponse"
   ]
 }
