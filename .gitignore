@@ -45,7 +45,6 @@ lerna-debug.log*
 .env.prod
 .env.local
 
-Dockerfile
 # temp directory
 .temp
 .tmp

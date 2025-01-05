@@ -4,7 +4,7 @@ services:
   pokedexapp:
     depends_on:
       - db
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     image: pokedex-docker
